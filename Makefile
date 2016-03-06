@@ -2,7 +2,7 @@ OPTIMIZE=-O2
 CC = gcc
 CFLAGS = $(OPTIMIZE) -g3 -std=gnu11
 DEPS = addtest.h
-OBJ = main.o addtest.h
+OBJ = main.o addtest.o
 SOURCES = Makefile addtest.c addtest.h main.c
 
 %.o: %.c $(DEPS)
