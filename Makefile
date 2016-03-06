@@ -15,7 +15,7 @@ addtest: $(OBJ)
 check:
 	
 
-dist: lab1DP-GarimaLunawatBreannaNery.tar.gz
+dist: lab4.1-GarimaLunawatBreannaNery.tar.gz
 lab4.1-GarimaLunawatBreannaNery.tar.gz: $(SOURCES)
 	mkdir lab4.1-GarimaLunawatBreannaNery
 	cp $(SOURCES) lab4.1-GarimaLunawatBreannaNery
