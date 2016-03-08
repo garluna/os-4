@@ -8,7 +8,7 @@ SOURCES = Makefile addtest.c main.c parser.c
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-parser: $(OBJ)
+addtest: $(OBJ)
 	gcc $(CFLAGS) -o $@ $^
 
 

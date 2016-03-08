@@ -37,12 +37,14 @@ int main(int argc, char** argv)
 	totalTime = endTime - startTime;
 	oper = numThreads * numIter * 2;
 
+	printf("%d threads x %d iterations x (add + subtract) = %d operations\n", numThreads, numIter, oper);
+
 	if (counter != 0)
 	{
   		printf("ERROR: final count = %lld\n", counter);
 	}
-  	printf("elapsed time: %d ns\n", totalTime);
-	printf("per operation: %d ns\n", totalTime/oper);
+  	printf("elapsed time: %lld ns\n", totalTime);
+	printf("per operation: %lld ns\n", totalTime/oper);
 
 	return(exit_status);
 }
