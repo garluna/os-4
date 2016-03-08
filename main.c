@@ -9,7 +9,6 @@
 int main(int argc, char** argv)
 {
 	int exit_status;
-	int max_exit;
 	int oper = 0;
 
 	struct timespec start;
