@@ -6,8 +6,6 @@
 #include "parser.h"
 #include "addtest.h"
 
-static long long counter = 0;
-
 int main(int argc, char** argv)
 {
 	int exit_status;

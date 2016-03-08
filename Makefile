@@ -1,6 +1,6 @@
 OPTIMIZE=-O2
 CC = gcc
-CFLAGS = $(OPTIMIZE) -g3 -std=gnu11
+CFLAGS = $(OPTIMIZE) -pthread -lrt -g3 -std=gnu11
 DEPS = parser.h addtest.h
 OBJ = main.o parser.o addtest.o
 SOURCES = Makefile addtest.c main.c parser.c 

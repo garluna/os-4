@@ -3,6 +3,7 @@
 #include <getopt.h>
 
 #include "parser.h"
+#include "addtest.h"
 
 int numThreads = 1;
 int numIter = 1;
@@ -70,6 +71,11 @@ int parser(int argc, char** argv)
 
         }
 	}
+
+	pthread_t* threads = malloc(numThreads * sizeof(pthread_t));
+	//do if else - not already 1 - dont overwrite 1
+	exitStatus = createThreads(numThreads, numIter, threads);
+	exitStatus = createThreads(numThreads, numIter, threads);
 
 	return exitStatus;
 }

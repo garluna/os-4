@@ -1,38 +1,55 @@
+#include <stdio.h>
+#include <pthread.h>
+
+long long counter = 0;
+
 void add(long long *pointer, long long value)
 {
     long long sum = *pointer + value;
     *pointer = sum;
 }
 
-void sum(void *a, long long count)
+void sum(void *a)
 {
 	int n = *(int*)a;
-	for (int i = 0; i < n; i++) //++ i or i++
+	for (int i = 0; i < n; i++) //TACO ++ i or i++
 	{
-		add(&count, 1);
+		add(&counter, 1);
 	}
 
 	for(int i = 0; i < n; i++)
 	{
-		add(&count, -1);
+		add(&counter, -1);
 	}
 }
 
-pthread_t* threads = malloc(num_threads*sizeof(pthread_t));
-
-for (i = 0; i < num_threads; i++) 
+int createThreads(int numT, int numI, pthread_t* memory)
 {
-  	ret = pthread_create(threads[i], NULL, (void *) &sum, (void *)&num_iter);
-  	if (ret != 0) {
-  		fprintf(stderr, "ERROR: thread creation: error code is %d\n", ret);
-  		exit(1);
-  	}
+	int i;
+	int j;
+	for (i = 0; i < numT; i++) 
+	{
+  		j = pthread_create(&memory[i], NULL, (void *)&sum, (void *)&numI);
+  		if (j != 0) 
+  		{
+  			fprintf(stderr, "ERROR: thread creation: error code is %d\n", j);
+  			//TACO do something with exit status
+  		}
+	}
 }
 
-  for (i = 0; i < num_threads; i++) {
-  	ret = pthread_join(threads[i], NULL);
-  	if (ret != 0) {
-  		fprintf(stderr, "ERROR: joining threads: error code is %d\n", ret);
-  		exit(1);
+int joinThreads(int numT, int numI, pthread_t* memory)
+{
+	int i;
+	int j;
+	for (i = 0; i < numT; i++) 
+	{
+  		j = pthread_join(memory[i], NULL);
+  		if (j != 0) 
+  		{
+  			fprintf(stderr, "ERROR: joining threads: error code is %d\n", j);
+  			//TACO do something with exit status
+  		}
   	}
-  }
+
+}
