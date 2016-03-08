@@ -36,6 +36,7 @@ int parser(int argc, char** argv)
         			char* endT;
         			numThreads = strtol(optarg, &endT, 0);
         		}
+        		break;
         	}
         	case 'i':
         	{
@@ -51,6 +52,7 @@ int parser(int argc, char** argv)
         			char* endI;
         			numIter = strtol(optarg, &endI, 0);
         		}
+        		break;
         	}
         	/********
         	case 'y':
