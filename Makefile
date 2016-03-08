@@ -1,9 +1,9 @@
 OPTIMIZE=-O2
 CC = gcc
 CFLAGS = $(OPTIMIZE) -g3 -std=gnu11
-DEPS = parser.h
-OBJ = main.o parser.o
-SOURCES = Makefile addtest.c main.c parser.c
+DEPS = parser.h addtest.h
+OBJ = main.o parser.o addtest.o
+SOURCES = Makefile addtest.c main.c parser.c 
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<

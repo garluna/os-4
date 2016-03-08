@@ -4,7 +4,7 @@
 #include <math.h>
 
 #include "parser.h"
-#include "add.h"
+#include "addtest.h"
 
 static long long counter = 0;
 
@@ -23,6 +23,7 @@ int main(int argc, char** argv)
 	if (clock_gettime(CLOCK_MONOTONIC, &start) != 0)
 	{
 		fprintf(stderr, "ERROR: clock_gettime start time\n");
+		exit(1);
 	}
 
 	exit_status = parser(argc, argv);
@@ -30,6 +31,7 @@ int main(int argc, char** argv)
 	if (clock_gettime(CLOCK_MONOTONIC, &end) != 0)
 	{
 		fprintf(stderr, "ERROR: clock_gettime end time\n");
+		exit(1);
 	}
 
 	startTime = (long long)(start.tv_sec*pow(10, 9) + start.tv_nsec);
@@ -41,7 +43,7 @@ int main(int argc, char** argv)
 
 	if (counter != 0)
 	{
-  		printf("ERROR: final count = %lld\n", counter);
+  		fprintf(stderr, "ERROR: final count = %lld\n", counter);
 	}
   	printf("elapsed time: %lld ns\n", totalTime);
 	printf("per operation: %lld ns\n", totalTime/oper);
