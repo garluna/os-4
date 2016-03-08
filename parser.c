@@ -1,0 +1,73 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <getopt.h>
+
+#include "parser.h"
+
+int numThreads = 1;
+int numIter = 1;
+
+int exitStatus = 0;
+
+int parser(int argc, char** argv)
+{
+	while (1)
+	{
+		int a;
+		int option_index = 0;
+
+		a = getopt_long(argc, argv, "", long_options, &option_index);
+        if (a == -1)
+            break;
+
+        switch(a)
+        {
+        	case 't':
+        	{
+        		if (optarg != NULL)
+        		{
+        			char* end;
+        			if (strtol(optarg, &end, 0) < 1)
+        			{
+        				fprintf(stderr, "ERROR: number of threads must be positive\n");
+        				exitStatus = 1;
+        			}
+
+        			char* endT;
+        			numThreads = strtol(optarg, &endT, 0);
+        		}
+        	}
+        	case 'i':
+        	{
+        		if (optarg != NULL)
+        		{
+        			char* end2;
+        			if (strtol(optarg, &end2, 0) < 1)
+        			{
+        				fprintf(stderr, "ERROR: number of iterations must be positive\n");
+        				exitStatus = 1;
+        			}
+
+        			char* endI;
+        			numIter = strtol(optarg, &endI, 0);
+        		}
+        	}
+        	/********
+        	case 'y':
+        	case 's':
+        	********/
+        	 case '?':
+        	 {
+                exitStatus = 1;
+                break;
+            }
+        	default:
+        	{
+        		abort();
+        	}
+
+        }
+	}
+
+	return exitStatus;
+}
