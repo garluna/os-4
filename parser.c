@@ -7,6 +7,7 @@
 
 int numThreads = 1;
 int numIter = 1;
+int opt_yield = 0;
 
 int exitStatus = 0;
 
@@ -33,9 +34,11 @@ int parser(int argc, char** argv)
         				fprintf(stderr, "ERROR: number of threads must be positive\n");
         				exitStatus = 1;
         			}
-
-        			char* endT;
-        			numThreads = strtol(optarg, &endT, 0);
+					else
+					{
+        				char* endT;
+        				numThreads = strtol(optarg, &endT, 0);
+        			}
         		}
         		break;
         	}
@@ -49,14 +52,34 @@ int parser(int argc, char** argv)
         				fprintf(stderr, "ERROR: number of iterations must be positive\n");
         				exitStatus = 1;
         			}
-
-        			char* endI;
-        			numIter = strtol(optarg, &endI, 0);
+        			else
+        			{
+        				char* endI;
+        				numIter = strtol(optarg, &endI, 0);
+        			}
+        		}
+        		break;
+        	}
+        	case 'y':
+        	{
+        		if (optarg != NULL)
+        		{
+        			//TACO can yield only be 1?
+        			char* end3;
+        			if (strtol(optarg, &end3, 0) < 1)
+        			{
+        				fprintf(stderr, "ERROR: yield must be positive\n");
+        				exitStatus = 1;
+        			}
+        			else
+        			{
+        				char* endY;
+        				opt_yield = strtol(optarg, &endY, 0);
+        			}
         		}
         		break;
         	}
         	/********
-        	case 'y':
         	case 's':
         	********/
         	 case '?':
