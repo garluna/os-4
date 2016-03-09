@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <getopt.h>
+#include <string.h>
 
 #include "parser.h"
 #include "addtest.h"
 
 int numThreads = 1;
 int numIter = 1;
+char sync = 'a';
 
 int exitStatus = 0;
 
@@ -63,7 +65,6 @@ int parser(int argc, char** argv)
         	{
         		if (optarg != NULL)
         		{
-        			//TACO can yield only be 1?
         			char* end3;
         			if (strtol(optarg, &end3, 0) != 1)
         			{
@@ -77,9 +78,22 @@ int parser(int argc, char** argv)
         		}
         		break;
         	}
-        	/********
         	case 's':
-        	********/
+        	{
+        		if (optarg != NULL)
+        		{
+        			if ((strcmp(optarg, "m")) == 0 || (strcmp(optarg, "s")) == 0 || (strcmp(optarg, "c")) == 0)
+        			{
+        				sync = optarg[0];
+        			}
+        			else
+        			{
+        				fprintf(stderr, "ERROR: invalid option for sync\n");
+        				exitStatus = 1;
+        			}
+        		}
+        		break;
+        	}
         	 case '?':
         	 {
                 exitStatus = 1;
@@ -95,7 +109,7 @@ int parser(int argc, char** argv)
 
 	pthread_t* threads = malloc(numThreads * sizeof(pthread_t));
 	//do if else - not already 1 - dont overwrite 1
-	if (createThreads(numThreads, numIter, threads))
+	if (createThreads(numThreads, numIter, threads, sync))
 	{
 		exitStatus = 1;
 	}
