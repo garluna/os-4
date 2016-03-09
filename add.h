@@ -1,1 +1,0 @@
-void add(long long *pointer, long long value);
