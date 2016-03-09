@@ -1,4 +1,5 @@
 extern long long counter;
+extern int opt_yield;
 
 void add(long long *pointer, long long value);
 void sum(void *a);
