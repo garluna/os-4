@@ -115,6 +115,8 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
   					//TACO do i add a break here
   					exitStat = 1;
+  					//break;
+					return exitStat;
   				}
 				break;
 			}
@@ -125,6 +127,8 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
   					exitStat = 1;
+  					//break;
+					 return exitStat;
   				}
 				break;
 			}
@@ -135,6 +139,7 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
   					exitStat = 1;
+					 return exitStat;
   				}
 				break;
 			}
@@ -144,7 +149,8 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				if (j != 0) 
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
-  					 exitStat = 1;
+  					exitStat = 1;
+					return exitStat;
   				}
 				break;
 			}

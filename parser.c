@@ -108,10 +108,10 @@ int parser(int argc, char** argv)
 	}
 
 	pthread_t* threads = malloc(numThreads * sizeof(pthread_t));
-	//do if else - not already 1 - dont overwrite 1
 	if (createThreads(numThreads, numIter, threads, sync))
 	{
 		exitStatus = 1;
+		return exitStatus;
 	}
 	
 	if (joinThreads(numThreads, numIter, threads))

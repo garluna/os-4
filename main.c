@@ -24,6 +24,10 @@ int main(int argc, char** argv)
 	}
 
 	exit_status = parser(argc, argv);
+	if (exit_status)
+	{
+		exit(exit_status);
+	}
 
 	if (clock_gettime(CLOCK_MONOTONIC, &end) != 0)
 	{
