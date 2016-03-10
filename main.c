@@ -41,9 +41,10 @@ int main(int argc, char** argv)
 	if (counter != 0)
 	{
   		fprintf(stderr, "ERROR: final count = %lld\n", counter);
+  		exit_status = 1;
 	}
   	printf("elapsed time: %lld ns\n", totalTime);
 	printf("per operation: %lld ns\n", totalTime/oper);
 
-	return(exit_status);
+	exit(exit_status);
 }

@@ -19,7 +19,7 @@ void add(long long *pointer, long long value)
 void sum(void *a)
 {
 	int n = *(int*)a;
-	for (int i = 0; i < n; i++) //TACO ++ i or i++
+	for (int i = 0; i < n; i++) 
 	{
 		add(&counter, 1);
 	}
@@ -102,6 +102,7 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
 {
 	int i;
 	int j;
+	int exitStat = 0;
 	for (i = 0; i < numT; i++) 
 	{
 		switch(sync)
@@ -112,7 +113,8 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				if (j != 0) 
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
-  					//TACO do something with exit status
+  					//TACO do i add a break here
+  					exitStat = 1;
   				}
 				break;
 			}
@@ -122,7 +124,7 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				if (j != 0) 
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
-  					//TACO do something with exit status
+  					exitStat = 1;
   				}
 				break;
 			}
@@ -132,7 +134,7 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				if (j != 0) 
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
-  					//TACO do something with exit status
+  					exitStat = 1;
   				}
 				break;
 			}
@@ -142,26 +144,28 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				if (j != 0) 
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
-  					//TACO do something with exit status
+  					 exitStat = 1;
   				}
 				break;
 			}
 		}
 	}
+	return exitStat;
 }
 
 int joinThreads(int numT, int numI, pthread_t* memory)
 {
 	int i;
 	int j;
+	int exitStat = 0;
 	for (i = 0; i < numT; i++) 
 	{
   		j = pthread_join(memory[i], NULL);
   		if (j != 0) 
   		{
   			fprintf(stderr, "ERROR: joining threads: error code is %d\n", j);
-  			//TACO do something with exit status
+  			exitStat = 1;
   		}
   	}
-
+  	return exitStat;
 }
