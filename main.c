@@ -2,9 +2,12 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
+#include <pthread.h> 
 
 #include "parser.h"
 #include "addtest.h"
+
+pthread_mutex_t lock;
 
 int main(int argc, char** argv)
 {
@@ -22,6 +25,8 @@ int main(int argc, char** argv)
 		fprintf(stderr, "ERROR: clock_gettime start time\n");
 		exit(1);
 	}
+
+	pthread_mutex_init(&lock, NULL);
 
 	exit_status = parser(argc, argv);
 	if (exit_status)

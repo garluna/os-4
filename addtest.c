@@ -7,7 +7,6 @@
 long long counter = 0;
 int opt_yield = 0;
 
-static pthread_mutex_t lock;
 volatile static int lock2 = 0;
 
 void add(long long *pointer, long long value)
