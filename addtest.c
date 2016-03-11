@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <pthread.h>
 
+#include "addtest.h"
+
 long long counter = 0;
 int opt_yield = 0;
 
@@ -139,7 +141,7 @@ int createThreads(int numT, int numI, pthread_t* memory, char sync)
   				{
   					fprintf(stderr, "ERROR: thread creation, error code: %d\n", j);
   					exitStat = 1;
-					 return exitStat;
+					return exitStat;
   				}
 				break;
 			}
