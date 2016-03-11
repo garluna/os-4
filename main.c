@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	long long endTime;
 	long long totalTime;
 
-	if (clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start) != 0)
+	if (clock_gettime(CLOCK_MONOTONIC, &start) != 0)
 	{
 		fprintf(stderr, "ERROR: clock_gettime start time\n");
 		exit(1);
@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 		exit(exit_status);
 	}
 
-	if (clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end) != 0)
+	if (clock_gettime(CLOCK_MONOTONIC, &end) != 0)
 	{
 		fprintf(stderr, "ERROR: clock_gettime end time\n");
 		exit(1);
